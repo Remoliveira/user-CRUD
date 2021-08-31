@@ -7,7 +7,7 @@ interface IUser {
 
     senha: string;
 
-    ultimoAcesso: Date
+    ultimoAcesso?: Date;
 
 }
 

@@ -18,22 +18,34 @@ class UserRepository implements IUserRepository {
         return UserRepository.instance;
     }
 
-    async criarUsuario({ nome, id, nomeUsuario, senha, ultimoAcesso }: IUser): Promise<IUser> {
+    async criarUsuario({ nome, id, nomeUsuario, senha }: IUser): Promise<IUser> {
         
-        const user = new userModel({ nome, id, nomeUsuario, senha, ultimoAcesso });
-
+        const user = new userModel({ nome, id, nomeUsuario, senha });
+        user.ultimoAcesso = new Date()
         await user.save()
 
         return user;      
     }
 
 
-    atualizarUsuario(): void {
-        throw new Error("Method not implemented.");
+    async atualizarUsuario({ nome, id, nomeUsuario, senha }: IUser): Promise<IUser> {
+
+        const user = await userModel.findOne({ id: id })
+        user.nome = nome;
+        user.nomeUsuario = nomeUsuario;
+        user.senha = senha;
+        user.ultimoAcesso = new Date()
+        await user.save()
+        
+        return user;
     }
-    deletarUsuario(): void {
-        throw new Error("Method not implemented.");
+
+    async deletarUsuario(id: string): Promise<void> {
+        
+        await userModel.deleteOne({ id: id })
     }
+
+
     async pesquisarUsuario(idSearch: string): Promise<IUser> {
         
         const user = await userModel.findOne({ id: idSearch })

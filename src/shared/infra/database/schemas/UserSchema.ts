@@ -17,7 +17,7 @@ const userSchema = new Schema<IUser>({
     },
     ultimoAcesso: {
         type: Date,
-       
+        required:false
     }
 
 });

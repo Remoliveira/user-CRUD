@@ -6,7 +6,7 @@ class CreateUserUseCase {
 
     constructor(private userRepository: IUserRepository){}
 
-    async execute({ nome, id, nomeUsuario, senha, ultimoAcesso }: IUser): Promise<IUser>{
+    async execute({ nome, id, nomeUsuario, senha }: IUser): Promise<IUser>{
 
         const usarioJaExiste = await this.userRepository.pesquisarUsuario(id);
 
@@ -14,7 +14,7 @@ class CreateUserUseCase {
             throw new Error("Usuario já existente")
         }
 
-        const user = await this.userRepository.criarUsuario({ nome, id, nomeUsuario, senha, ultimoAcesso });
+        const user = await this.userRepository.criarUsuario({ nome, id, nomeUsuario, senha });
 
         return user;
 

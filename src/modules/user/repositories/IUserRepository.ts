@@ -3,11 +3,11 @@ import { IUser } from "../User";
 
 interface IUserRepository {
 
-    criarUsuario({ nome, id, nomeUsuario, senha, ultimoAcesso }:IUser): Promise<IUser>
+    criarUsuario({ nome, id, nomeUsuario, senha }:IUser): Promise<IUser>
 
-    atualizarUsuario(): void
+    atualizarUsuario({ nome, id, nomeUsuario, senha }:IUser): Promise<IUser>
 
-    deletarUsuario(): void
+    deletarUsuario(id: string): Promise<void>
 
     pesquisarUsuario(id: string): Promise<IUser>
 
