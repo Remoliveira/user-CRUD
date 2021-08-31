@@ -4,7 +4,7 @@ import { IUser } from "../../../../modules/user/User";
 import { userSchema } from "../schemas/UserSchema";
 
 
-const userModel = model<IUser>('IUser', userSchema);
+const userModel = model<IUser>('Usuario', userSchema);
 
 
 
