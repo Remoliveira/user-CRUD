@@ -18,6 +18,10 @@ const userSchema = new Schema<IUser>({
     ultimoAcesso: {
         type: Date,
         required:false
+    },
+    nomeUsuario: {
+        type: String,
+        required: true
     }
 
 });
